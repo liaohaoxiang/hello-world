@@ -1,0 +1,24 @@
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<wxlifepay>
+  <head>
+    <version>1.0.1</version>
+    <trancode>postinvoice</trancode>
+    <transeqnum>invoice40711714591</transeqnum>
+    <merchantid>1624029174</merchantid>
+  </head>
+  <info>
+    <company_id>43060002020302></company_id>
+    <bill_no>9roRCsb724naM134></bill_no>
+    <business_type>3</business_type>
+    <pay_amount>1</pay_amount>
+    <invoice_type>0</invoice_type>
+    <invoice_title>\345\210\230\346\200\273></invoice_title>
+    <invoice_no>></invoice_no>
+    <invoice_remark>></invoice_remark>
+    <email>393096124@qq.com></email>
+    <corp_address>></corp_address>
+    <corp_tel>></corp_tel>
+    <bank_account>></bank_account>
+    <bank_name>></bank_name>
+  </info>
+</wxlifepay>c9ce314054fe5d6bcc41a63a63fc9477

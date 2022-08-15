@@ -1,19 +1,90 @@
 <template>
-  <div class="page-index">
-    <emenu />
+  <div class="m-menu">
+    <dl class="nav" @mouseleave="wrapper_leave">
+      <dt>全部分类</dt>
+      <dd v-for="(item, idx) in menu" :key="idx" @mouseenter="list_enter">
+        <i :class="item.type">{{ item.name }}</i>
+        <span class="arrow" />
+      </dd>
+    </dl>
+    <div
+      class="detail"
+      v-if="kind"
+      @mouseenter="item_enter"
+      @mouseleave="item_leave"
+    >
+      <div v-for="(item, idx) in curdetail.child" :key="idx">
+        <h4>{{ item.title }}</h4>
+        <span v-for="v in item.child" :key="v">{{ v }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Emenu from "../components/menu-component.vue";
 export default {
-  components: {
-    Emenu,
+  data() {
+    return {
+      kind: "",
+      menu: [
+        {
+          type: "food",
+          name: "美食",
+          child: [
+            {
+              title: "美食",
+              child: ["代金券", "甜点饮品", "火锅", "自助餐", "小吃快餐"],
+            },
+          ],
+        },
+        {
+          type: "takeout",
+          name: "外卖",
+          child: [
+            {
+              title: "外卖",
+              child: ["美团外卖"],
+            },
+          ],
+        },
+        {
+          type: "hotel",
+          name: "酒店",
+          child: [
+            {
+              title: "酒店",
+              child: ["经济", "舒适/三星", "高档", "豪华"],
+            },
+          ],
+        },
+      ],
+    };
+  },
+  computed: {
+    curdetail: function () {
+      return this.menu.filter((item) => item.type === this.kind)[0];
+    },
+  },
+  methods: {
+    wrapper_leave: function () {
+      this._timer = setTimeout(() => {
+        this.kind = "";
+      }, 100);
+    },
+    list_enter: function (e) {
+      this.kind = e.target.querySelector("i").className;
+    },
+    item_enter: function () {
+      clearTimeout(this._timer);
+    },
+    item_leave: function () {
+      this.kind = "";
+    },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .page-index {
   .m-menu {
     width: 230px;
@@ -192,8 +263,6 @@ export default {
       height: 416px;
       background: #fff;
       z-index: 9999;
-      border: 1px solid red;
-      color: black;
 
       h4 {
         margin-top: 24px;
